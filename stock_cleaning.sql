@@ -5,5 +5,10 @@ SELECT
     ,qte_maxi
     ,c_reappro
     ,pump
-    ,REGEXP_REPLACE(qte_en_stock,'NULL',NULL) AS qte_en_stock
+    ,CAST(
+      CASE
+        WHEN qte_en_stock = 'NULL' then NULL
+        ELSE qte_en_stock
+      END 
+    AS FLOAT64) AS qte_en_stock
 FROM `airy-aria-420409.****.stock`
